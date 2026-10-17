@@ -1,0 +1,6 @@
+# Source de Firefox et builds : hors du dépôt (voir docs/BUILD.md)
+/esr153/
+obj-*/
+*.log
+# Profils de test
+ff-test-profile*/
