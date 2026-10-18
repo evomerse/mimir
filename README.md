@@ -26,12 +26,7 @@ Les fichiers sont dans la page [**Releases**](https://github.com/evomerse/mimir/
 2. Lancer l'installeur et suivre l'assistant.
 3. Au premier lancement, si l'interface reste en anglais alors que Windows est en français, fermer puis rouvrir Mimir une fois : le pack de langue s'installe au premier démarrage.
 
-**L'installeur n'est pas signé** (pas de certificat de signature de code pour l'instant) :
-
-- Windows SmartScreen peut afficher « Windows a protégé votre ordinateur » : cliquer sur **Informations complémentaires**, puis **Exécuter quand même**.
-- Si **Smart App Control** est activé, Windows refuse l'installeur sans proposer de contournement, et le désactiver est irréversible sans réinstaller Windows. Mimir n'est donc pas utilisable sur ces machines pour le moment.
-
-Une archive `mimir-<version>-windows-x86_64.zip` sans installation est aussi fournie (mêmes remarques).
+Une archive `mimir-<version>-windows-x86_64.zip` sans installation est aussi fournie.
 
 ### Linux (x86_64)
 
