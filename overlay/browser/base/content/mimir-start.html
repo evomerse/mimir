@@ -1,0 +1,39 @@
+<!doctype html>
+
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src chrome:; script-src chrome:; img-src chrome:; object-src 'none'"
+    />
+    <title>Mimir</title>
+    <link rel="stylesheet" href="chrome://browser/content/mimir-start.css" />
+  </head>
+  <body>
+    <main>
+      <img
+        id="logo"
+        src="chrome://branding/content/about-logo@2x.png"
+        width="96"
+        height="96"
+        alt=""
+      />
+      <h1 id="greeting">Mimir</h1>
+      <p id="date"></p>
+      <p id="hint" class="hint"></p>
+      <ul class="promises">
+        <li><b data-i18n="adblock-title"></b><span data-i18n="adblock-text"></span></li>
+        <li><b data-i18n="telemetry-title"></b><span data-i18n="telemetry-text"></span></li>
+        <li><b data-i18n="account-title"></b><span data-i18n="account-text"></span></li>
+      </ul>
+    </main>
+    <script src="chrome://browser/content/mimir-start.js"></script>
+  </body>
+</html>

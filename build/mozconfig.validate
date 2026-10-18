@@ -1,0 +1,10 @@
+# Premier build NON modifie de Firefox ESR : valide la chaine d'outils.
+# Usage (depuis MozillaBuild) : MOZCONFIG=/d/Projets/mimir/build/mozconfig.validate ./mach build
+ac_add_options --enable-application=browser
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-validate
+
+ac_add_options --enable-optimize
+ac_add_options --disable-debug
+ac_add_options --disable-tests
+ac_add_options --disable-crashreporter
+ac_add_options --disable-updater

@@ -1,0 +1,13 @@
+diff --git a/browser/base/jar.mn b/browser/base/jar.mn
+--- a/browser/base/jar.mn
++++ b/browser/base/jar.mn
+@@ -31,6 +31,9 @@
+         content/browser/aboutTabCrashed.js            (content/aboutTabCrashed.js)
+         content/browser/aboutTabCrashed.xhtml         (content/aboutTabCrashed.xhtml)
+         content/browser/blanktab.html                 (content/blanktab.html)
++        content/browser/mimir-start.css               (content/mimir-start.css)
++        content/browser/mimir-start.html              (content/mimir-start.html)
++        content/browser/mimir-start.js                (content/mimir-start.js)
+         content/browser/browser.js                    (content/browser.js)
+ *       content/browser/browser.xhtml                 (content/browser.xhtml)
+         content/browser/browser-a11yUtils.js          (content/browser-a11yUtils.js)

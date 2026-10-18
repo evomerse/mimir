@@ -1,0 +1,61 @@
+{
+  "manifest_version": 2,
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "mimir-nuit@mimir.browser"
+    }
+  },
+  "name": "Mimir Nuit",
+  "description": "Le thème sombre par défaut : bleu nuit et reflets cyan.",
+  "author": "Mimir",
+  "version": "1.0.0",
+  "icons": {
+    "32": "icon.svg"
+  },
+  "theme": {
+    "properties": {
+      "color_scheme": "dark"
+    },
+    "colors": {
+      "frame": "#0d1220",
+      "frame_inactive": "#0d1220",
+      "toolbar": "#151c2c",
+      "toolbar_text": "#e8edf7",
+      "toolbar_vertical_separator": "#2a3552",
+      "toolbar_top_separator": "transparent",
+      "toolbar_bottom_separator": "#2a3552",
+      "toolbar_field": "#1f2940",
+      "toolbar_field_text": "#e8edf7",
+      "toolbar_field_border": "transparent",
+      "toolbar_field_focus": "#1f2940",
+      "toolbar_field_text_focus": "#e8edf7",
+      "toolbar_field_border_focus": "#4f9dff",
+      "toolbar_field_highlight": "#4f9dff55",
+      "toolbar_field_highlight_text": "#e8edf7",
+      "button_background_hover": "#e8edf714",
+      "button_background_active": "#e8edf726",
+      "icons": "#9aa7c2",
+      "icons_attention": "#5fd8f0",
+      "bookmark_text": "#e8edf7",
+      "tab_text": "#e8edf7",
+      "tab_background_text": "#9aa7c2",
+      "tab_selected": "#151c2c",
+      "tab_line": "#4f9dff",
+      "tab_loading": "#4f9dff",
+      "tab_background_separator": "transparent",
+      "ntp_background": "#0d1220",
+      "ntp_text": "#e8edf7",
+      "popup": "#18213a",
+      "popup_text": "#e8edf7",
+      "popup_border": "#2a3552",
+      "popup_highlight": "#4f9dff33",
+      "popup_highlight_text": "#e8edf7",
+      "sidebar": "#151c2c",
+      "sidebar_text": "#e8edf7",
+      "sidebar_border": "#2a3552",
+      "sidebar_highlight": "#4f9dff",
+      "sidebar_highlight_text": "#ffffff",
+      "focus_outline": "#4f9dff"
+    }
+  }
+}

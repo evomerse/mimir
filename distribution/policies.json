@@ -21,6 +21,12 @@
       "Pocket": false,
       "SponsoredPocket": false,
       "Snippets": false,
+      "Weather": false,
+      "Stories": false,
+      "SponsoredStories": false,
+      "Widgets": {
+        "Enabled": false
+      },
       "Locked": true
     },
     "UserMessaging": {
@@ -42,6 +48,9 @@
         "installation_mode": "force_installed",
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
       }
+    },
+    "SearchEngines": {
+      "Default": "DuckDuckGo"
     }
   }
 }

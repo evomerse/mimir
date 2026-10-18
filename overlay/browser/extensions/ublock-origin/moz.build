@@ -1,0 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+# uBlock Origin (GPLv3, Raymond Hill) integre comme add-on du navigateur.
+# Le dossier xpi/ est rempli par scripts/prepare-ublock.sh (xpi signe, empreinte verifiee).
+JAR_MANIFESTS += ["jar.mn"]

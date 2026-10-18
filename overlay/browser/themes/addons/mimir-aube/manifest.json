@@ -1,0 +1,61 @@
+{
+  "manifest_version": 2,
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "mimir-aube@mimir.browser"
+    }
+  },
+  "name": "Mimir Aube",
+  "description": "Le thème clair : blanc bleuté et accents azur.",
+  "author": "Mimir",
+  "version": "1.0.0",
+  "icons": {
+    "32": "icon.svg"
+  },
+  "theme": {
+    "properties": {
+      "color_scheme": "light"
+    },
+    "colors": {
+      "frame": "#e4eaf7",
+      "frame_inactive": "#e4eaf7",
+      "toolbar": "#f6f8fd",
+      "toolbar_text": "#14203a",
+      "toolbar_vertical_separator": "#c9d3e6",
+      "toolbar_top_separator": "transparent",
+      "toolbar_bottom_separator": "#c9d3e6",
+      "toolbar_field": "#ffffff",
+      "toolbar_field_text": "#14203a",
+      "toolbar_field_border": "transparent",
+      "toolbar_field_focus": "#ffffff",
+      "toolbar_field_text_focus": "#14203a",
+      "toolbar_field_border_focus": "#2f6fe4",
+      "toolbar_field_highlight": "#2f6fe455",
+      "toolbar_field_highlight_text": "#14203a",
+      "button_background_hover": "#14203a14",
+      "button_background_active": "#14203a26",
+      "icons": "#56627d",
+      "icons_attention": "#19a7c9",
+      "bookmark_text": "#14203a",
+      "tab_text": "#14203a",
+      "tab_background_text": "#56627d",
+      "tab_selected": "#f6f8fd",
+      "tab_line": "#2f6fe4",
+      "tab_loading": "#2f6fe4",
+      "tab_background_separator": "transparent",
+      "ntp_background": "#e4eaf7",
+      "ntp_text": "#14203a",
+      "popup": "#ffffff",
+      "popup_text": "#14203a",
+      "popup_border": "#c9d3e6",
+      "popup_highlight": "#2f6fe433",
+      "popup_highlight_text": "#14203a",
+      "sidebar": "#f6f8fd",
+      "sidebar_text": "#14203a",
+      "sidebar_border": "#c9d3e6",
+      "sidebar_highlight": "#2f6fe4",
+      "sidebar_highlight_text": "#ffffff",
+      "focus_outline": "#2f6fe4"
+    }
+  }
+}

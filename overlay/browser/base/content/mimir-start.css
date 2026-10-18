@@ -1,0 +1,105 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+:root {
+  --bg: #f4f6fc;
+  --bg-glow: #dfe5fb;
+  --text: #141a2e;
+  --muted: #5a6486;
+  --card: #ffffffcc;
+  --card-border: #c9d1ee;
+  --accent: #5b63e6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1220;
+    --bg-glow: #1a2250;
+    --text: #e8edf7;
+    --muted: #9aa6c8;
+    --card: #151c2ccc;
+    --card-border: #2a3558;
+    --accent: #8b93ff;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, var(--bg-glow), transparent 70%),
+    var(--bg);
+  color: var(--text);
+  font: 16px/1.5 system-ui, sans-serif;
+}
+
+main {
+  width: min(720px, 100%);
+  text-align: center;
+}
+
+#logo {
+  filter: drop-shadow(0 8px 24px color-mix(in srgb, var(--accent) 45%, transparent));
+}
+
+h1 {
+  margin: 16px 0 4px;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+#date {
+  margin: 0;
+  color: var(--muted);
+}
+
+#date::first-letter {
+  text-transform: uppercase;
+}
+
+.hint {
+  margin: 28px 0 36px;
+  color: var(--muted);
+}
+
+.promises {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: start;
+}
+
+.promises li {
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+}
+
+.promises b {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.promises span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}

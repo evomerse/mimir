@@ -1,0 +1,61 @@
+{
+  "manifest_version": 2,
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "mimir-lagune@mimir.browser"
+    }
+  },
+  "name": "Mimir Lagune",
+  "description": "Un thème sombre vert d'eau, pour changer du bleu.",
+  "author": "Mimir",
+  "version": "1.0.0",
+  "icons": {
+    "32": "icon.svg"
+  },
+  "theme": {
+    "properties": {
+      "color_scheme": "dark"
+    },
+    "colors": {
+      "frame": "#08171a",
+      "frame_inactive": "#08171a",
+      "toolbar": "#0f2226",
+      "toolbar_text": "#e4f6f3",
+      "toolbar_vertical_separator": "#1f4249",
+      "toolbar_top_separator": "transparent",
+      "toolbar_bottom_separator": "#1f4249",
+      "toolbar_field": "#17343a",
+      "toolbar_field_text": "#e4f6f3",
+      "toolbar_field_border": "transparent",
+      "toolbar_field_focus": "#17343a",
+      "toolbar_field_text_focus": "#e4f6f3",
+      "toolbar_field_border_focus": "#2fd4c0",
+      "toolbar_field_highlight": "#2fd4c055",
+      "toolbar_field_highlight_text": "#e4f6f3",
+      "button_background_hover": "#e4f6f314",
+      "button_background_active": "#e4f6f326",
+      "icons": "#8fb3ad",
+      "icons_attention": "#6be38f",
+      "bookmark_text": "#e4f6f3",
+      "tab_text": "#e4f6f3",
+      "tab_background_text": "#8fb3ad",
+      "tab_selected": "#0f2226",
+      "tab_line": "#2fd4c0",
+      "tab_loading": "#2fd4c0",
+      "tab_background_separator": "transparent",
+      "ntp_background": "#08171a",
+      "ntp_text": "#e4f6f3",
+      "popup": "#12292e",
+      "popup_text": "#e4f6f3",
+      "popup_border": "#1f4249",
+      "popup_highlight": "#2fd4c033",
+      "popup_highlight_text": "#e4f6f3",
+      "sidebar": "#0f2226",
+      "sidebar_text": "#e4f6f3",
+      "sidebar_border": "#1f4249",
+      "sidebar_highlight": "#2fd4c0",
+      "sidebar_highlight_text": "#ffffff",
+      "focus_outline": "#2fd4c0"
+    }
+  }
+}

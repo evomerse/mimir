@@ -1,0 +1,30 @@
+diff --git a/toolkit/mozapps/extensions/internal/XPIProvider.sys.mjs b/toolkit/mozapps/extensions/internal/XPIProvider.sys.mjs
+index 74d738e46f..5cca71195f 100644
+--- a/toolkit/mozapps/extensions/internal/XPIProvider.sys.mjs
++++ b/toolkit/mozapps/extensions/internal/XPIProvider.sys.mjs
+@@ -2776,6 +2776,25 @@ export var XPIProvider = {
+         );
+       }
+ 
++      // Mimir : au premier lancement d'un profil, Mimir Nuit est le theme actif.
++      // Il doit etre installe avant le theme par defaut (voir installBuiltinAddon),
++      // sinon le theme par defaut est active en premier et reste choisi.
++      if (
++        AppConstants.platform != "android" &&
++        !Services.prefs.getBoolPref("mimir.firstrun.themeDone", false)
++      ) {
++        Services.prefs.setBoolPref("mimir.firstrun.themeDone", true);
++        Services.prefs.setStringPref(
++          "extensions.activeThemeID",
++          "mimir-nuit@mimir.browser"
++        );
++        this.maybeInstallBuiltinAddon(
++          "mimir-nuit@mimir.browser",
++          "1.0.0",
++          "resource://builtin-themes/mimir-nuit/"
++        );
++      }
++
+       const isInAutomationOrXPCShellTests =
+         Cu.isInAutomation || Services.env.exists("XPCSHELL_TEST_PROFILE_DIR");
+       if (

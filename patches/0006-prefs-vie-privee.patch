@@ -1,0 +1,59 @@
+diff --git a/browser/app/profile/firefox.js b/browser/app/profile/firefox.js
+--- a/browser/app/profile/firefox.js
++++ b/browser/app/profile/firefox.js
+@@ -3627,3 +3627,55 @@
+ #ifdef XP_MACOSX
+   pref("browser.macAppMenu.setAsDefaultShown", false);
+ #endif
++
++// ---------------------------------------------------------------------------
++// Mimir : valeurs par defaut de vie privee (patches/0006-prefs-vie-privee.patch).
++// Justification de chaque choix : docs/PRIVACY.md. Ce bloc doit rester le
++// dernier du fichier : une pref() posterieure l'emporte sur les precedentes.
++// ---------------------------------------------------------------------------
++
++// Telemetrie, rapports, etudes : jamais.
++pref("datareporting.healthreport.uploadEnabled", false);
++pref("datareporting.policy.dataSubmissionEnabled", false);
++pref("datareporting.usage.uploadEnabled", false);
++pref("toolkit.telemetry.enabled", false);
++pref("toolkit.telemetry.unified", false);
++pref("toolkit.telemetry.archive.enabled", false);
++pref("toolkit.telemetry.newProfilePing.enabled", false);
++pref("toolkit.telemetry.updatePing.enabled", false);
++pref("toolkit.telemetry.bhrPing.enabled", false);
++pref("toolkit.telemetry.firstShutdownPing.enabled", false);
++pref("toolkit.telemetry.shutdownPingSender.enabled", false);
++pref("toolkit.coverage.endpoint.base", "");
++pref("browser.ping-centre.telemetry", false);
++pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
++pref("browser.newtabpage.activity-stream.telemetry", false);
++pref("browser.tabs.crashReporting.sendReport", false);
++pref("app.shield.optoutstudies.enabled", false);
++pref("app.normandy.enabled", false);
++pref("app.normandy.api_url", "");
++
++// Contenu sponsorise, recommandations, promotions Mozilla.
++pref("browser.urlbar.quicksuggest.enabled", false);
++pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
++pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
++pref("browser.discovery.enabled", false);
++pref("browser.vpn_promo.enabled", false);
++pref("browser.contentblocking.report.monitor.enabled", false);
++pref("browser.contentblocking.report.lockwise.enabled", false);
++pref("browser.contentblocking.report.hide_vpn_banner", true);
++pref("browser.preferences.moreFromMozilla", false);
++pref("extensions.htmlaboutaddons.recommendations.enabled", false);
++
++// Pas de compte : Mimir n'a ni synchronisation ni service associe.
++pref("identity.fxaccounts.enabled", false);
++
++// Connexions de fond vers des serveurs Mozilla qui n'apportent rien a l'utilisateur.
++pref("network.captive-portal-service.enabled", false);
++pref("network.connectivity-service.enabled", false);
++pref("browser.region.update.enabled", false);
++pref("browser.region.network.url", "");
++pref("geo.provider.network.url", "");
++
++// Page de demarrage locale : le cache d'about:home est celui d'Activity Stream.
++pref("browser.startup.homepage.abouthome_cache.enabled", false);

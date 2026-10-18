@@ -1,0 +1,66 @@
+diff --git a/browser/themes/BuiltInThemeConfig.sys.mjs b/browser/themes/BuiltInThemeConfig.sys.mjs
+index efe786548a..21887900ba 100644
+--- a/browser/themes/BuiltInThemeConfig.sys.mjs
++++ b/browser/themes/BuiltInThemeConfig.sys.mjs
+@@ -21,6 +21,34 @@
+  *   (-moz-native-theme) media query.
+  */
+ export const BuiltInThemeConfig = new Map([
++  [
++    "mimir-nuit@mimir.browser",
++    {
++      version: "1.0.0",
++      path: "resource://builtin-themes/mimir-nuit/",
++    },
++  ],
++  [
++    "mimir-aube@mimir.browser",
++    {
++      version: "1.0.0",
++      path: "resource://builtin-themes/mimir-aube/",
++    },
++  ],
++  [
++    "mimir-aurore@mimir.browser",
++    {
++      version: "1.0.0",
++      path: "resource://builtin-themes/mimir-aurore/",
++    },
++  ],
++  [
++    "mimir-lagune@mimir.browser",
++    {
++      version: "1.0.0",
++      path: "resource://builtin-themes/mimir-lagune/",
++    },
++  ],
+   [
+     "firefox-compact-light@mozilla.org",
+     {
+diff --git a/browser/themes/addons/jar.mn b/browser/themes/addons/jar.mn
+index 83a321f3e2..e728968b05 100644
+--- a/browser/themes/addons/jar.mn
++++ b/browser/themes/addons/jar.mn
+@@ -16,6 +16,22 @@ browser.jar:
+   content/builtin-themes/light/icon.svg            (light/icon.svg)
+   content/builtin-themes/light/manifest.json       (light/manifest.json)
+ 
++  content/builtin-themes/mimir-nuit/preview.svg         (mimir-nuit/preview.svg)
++  content/builtin-themes/mimir-nuit/icon.svg            (mimir-nuit/icon.svg)
++  content/builtin-themes/mimir-nuit/manifest.json       (mimir-nuit/manifest.json)
++
++  content/builtin-themes/mimir-aube/preview.svg         (mimir-aube/preview.svg)
++  content/builtin-themes/mimir-aube/icon.svg            (mimir-aube/icon.svg)
++  content/builtin-themes/mimir-aube/manifest.json       (mimir-aube/manifest.json)
++
++  content/builtin-themes/mimir-aurore/preview.svg         (mimir-aurore/preview.svg)
++  content/builtin-themes/mimir-aurore/icon.svg            (mimir-aurore/icon.svg)
++  content/builtin-themes/mimir-aurore/manifest.json       (mimir-aurore/manifest.json)
++
++  content/builtin-themes/mimir-lagune/preview.svg         (mimir-lagune/preview.svg)
++  content/builtin-themes/mimir-lagune/icon.svg            (mimir-lagune/icon.svg)
++  content/builtin-themes/mimir-lagune/manifest.json       (mimir-lagune/manifest.json)
++
+   content/builtin-themes/aiwindow/manifest.json       (aiwindow/manifest.json)
+   content/builtin-themes/aiwindow/aiwindow-theme.css  (aiwindow/aiwindow-theme.css)
+ 

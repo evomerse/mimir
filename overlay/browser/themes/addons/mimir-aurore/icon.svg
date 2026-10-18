@@ -1,0 +1,10 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<svg width="63" height="62" viewBox="0 0 63 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#d27bff"/><stop offset="1" stop-color="#9a6bff"/>
+  </linearGradient></defs>
+  <circle cx="31.5" cy="31" r="31" fill="#120d24"/>
+  <circle cx="31.5" cy="31" r="22" fill="url(#g)"/>
+</svg>
