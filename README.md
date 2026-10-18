@@ -18,11 +18,11 @@ Mimir est une *distribution* de [Firefox ESR](https://www.mozilla.org/firefox/en
 
 ## Installer
 
-Les fichiers à télécharger iront dans la page **Releases** du dépôt. Aucune version n'y est encore publiée : en attendant, voir [Compiler soi-même](#compiler-soi-même).
+Les fichiers sont dans la page [**Releases**](https://github.com/evomerse/mimir/releases) du dépôt, avec un fichier `SHA256SUMS.txt` pour vérifier les téléchargements. Vous pouvez aussi [compiler soi-même](#compiler-soi-même).
 
 ### Windows 10 / 11 (64 bits)
 
-1. Télécharger `mimir-<version>.en-US.win64.installer.exe` (et vérifier son empreinte : `Get-FileHash <fichier> -Algorithm SHA256`, à comparer à celle de la release).
+1. Télécharger `mimir-<version>-windows-x86_64-installer.exe` et vérifier son empreinte : `Get-FileHash <fichier> -Algorithm SHA256`, à comparer à la ligne correspondante de `SHA256SUMS.txt`.
 2. Lancer l'installeur et suivre l'assistant.
 3. Au premier lancement, si l'interface reste en anglais alors que Windows est en français, fermer puis rouvrir Mimir une fois : le pack de langue s'installe au premier démarrage.
 
@@ -31,7 +31,7 @@ Les fichiers à télécharger iront dans la page **Releases** du dépôt. Aucune
 - Windows SmartScreen peut afficher « Windows a protégé votre ordinateur » : cliquer sur **Informations complémentaires**, puis **Exécuter quand même**.
 - Si **Smart App Control** est activé, Windows refuse l'installeur sans proposer de contournement, et le désactiver est irréversible sans réinstaller Windows. Mimir n'est donc pas utilisable sur ces machines pour le moment.
 
-Une archive `.zip` sans installation est aussi fournie (mêmes remarques).
+Une archive `mimir-<version>-windows-x86_64.zip` sans installation est aussi fournie (mêmes remarques).
 
 ### Linux (x86_64)
 
@@ -42,7 +42,7 @@ tar xf mimir-<version>-linux-x86_64.tar.xz
 ./mimir/mimir
 ```
 
-Pour vérifier le téléchargement : `sha256sum -c mimir-<version>-linux-x86_64.tar.xz.sha256` dans le dossier des fichiers. Il n'y a pas encore de paquet `.deb`, Flatpak ni raccourci de menu : l'archive se décompresse n'importe où et se lance directement. Le profil est dans `~/.config/mimir`.
+Pour vérifier le téléchargement : `sha256sum -c SHA256SUMS.txt --ignore-missing` dans le dossier des fichiers. Il n'y a pas encore de paquet `.deb`, Flatpak ni raccourci de menu : l'archive se décompresse n'importe où et se lance directement. Le profil est dans `~/.config/mimir`.
 
 ### macOS
 
