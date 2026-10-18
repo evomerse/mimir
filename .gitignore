@@ -4,3 +4,4 @@ obj-*/
 *.log
 # Profils de test
 ff-test-profile*/
+dist/

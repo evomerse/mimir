@@ -1,0 +1,23 @@
+# Build Mimir pour Windows (x64), dans le shell MozillaBuild. Lance par scripts/build-windows.sh.
+# Valide dans une VM Windows 11 sans Smart App Control (voir docs/BUILD.md).
+ac_add_options --enable-application=browser
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-mimir
+
+# Identite : meme que sous Linux (patches/0002-vendor-mimir.patch).
+ac_add_options --with-branding=browser/branding/mimir
+ac_add_options --with-app-basename=Mimir
+
+# Pas d'infos de debogage Rust : avec le LTO de gkrust elles font manquer de memoire a rustc
+# (« rustc-LLVM ERROR: out of memory » avec 16 Go de RAM).
+export RUSTFLAGS="-C debuginfo=0"
+
+ac_add_options --enable-optimize
+ac_add_options --disable-debug
+ac_add_options --disable-tests
+ac_add_options --disable-crashreporter
+ac_add_options --disable-updater
+
+# Services Windows de Mozilla : aucun n'a de sens pour Mimir.
+ac_add_options --disable-maintenance-service
+ac_add_options --disable-default-browser-agent
+ac_add_options --disable-bits-download

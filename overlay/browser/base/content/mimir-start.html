@@ -18,21 +18,48 @@
   </head>
   <body>
     <main>
-      <img
-        id="logo"
-        src="chrome://branding/content/about-logo@2x.png"
-        width="96"
-        height="96"
-        alt=""
-      />
-      <h1 id="greeting">Mimir</h1>
-      <p id="date"></p>
-      <p id="hint" class="hint"></p>
-      <ul class="promises">
-        <li><b data-i18n="adblock-title"></b><span data-i18n="adblock-text"></span></li>
-        <li><b data-i18n="telemetry-title"></b><span data-i18n="telemetry-text"></span></li>
-        <li><b data-i18n="account-title"></b><span data-i18n="account-text"></span></li>
-      </ul>
+      <header>
+        <img
+          id="logo"
+          src="chrome://branding/content/about-logo@2x.png"
+          width="56"
+          height="56"
+          alt=""
+        />
+        <div>
+          <h1 id="greeting">Mimir</h1>
+          <p id="date"></p>
+        </div>
+        <time id="clock"></time>
+      </header>
+
+      <section id="music" class="card" aria-labelledby="music-title">
+        <h2 id="music-title" data-i18n="music-title"></h2>
+        <p id="music-hint" class="muted"></p>
+        <div id="services" role="radiogroup" aria-labelledby="music-title"></div>
+        <a id="music-open" class="primary" hidden></a>
+        <div id="moods" hidden></div>
+      </section>
+
+      <section class="card" aria-labelledby="shortcuts-title">
+        <h2 id="shortcuts-title" data-i18n="shortcuts-title"></h2>
+        <ul id="shortcuts"></ul>
+        <form id="shortcut-form" hidden>
+          <input
+            id="shortcut-url"
+            type="text"
+            inputmode="url"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="submit" data-i18n="add"></button>
+        </form>
+      </section>
+
+      <footer>
+        <p id="stats"></p>
+        <p class="muted" data-i18n="promise"></p>
+      </footer>
     </main>
     <script src="chrome://browser/content/mimir-start.js"></script>
   </body>

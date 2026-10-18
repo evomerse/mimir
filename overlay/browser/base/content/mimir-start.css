@@ -3,24 +3,29 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 :root {
-  --bg: #f4f6fc;
-  --bg-glow: #dfe5fb;
+  /* La teinte de l'ambiance suit l'heure de la journee (voir mimir-start.js). */
+  --hue: 232;
+  --bg: hsl(var(--hue) 50% 97%);
+  --bg-glow: hsl(var(--hue) 70% 88%);
   --text: #141a2e;
   --muted: #5a6486;
   --card: #ffffffcc;
   --card-border: #c9d1ee;
-  --accent: #5b63e6;
+  --accent: hsl(var(--hue) 70% 50%);
+  --accent-text: #ffffff;
+  --radius: 14px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0d1220;
-    --bg-glow: #1a2250;
+    --bg: hsl(var(--hue) 40% 9%);
+    --bg-glow: hsl(var(--hue) 55% 20%);
     --text: #e8edf7;
     --muted: #9aa6c8;
     --card: #151c2ccc;
     --card-border: #2a3558;
-    --accent: #8b93ff;
+    --accent: hsl(var(--hue) 100% 78%);
+    --accent-text: #0d1220;
   }
 }
 
@@ -28,35 +33,55 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: grid;
-  place-items: center;
-  padding: 24px;
+html {
+  min-height: 100%;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, var(--bg-glow), transparent 70%),
+    radial-gradient(ellipse 90% 55% at 50% 0%, var(--bg-glow), transparent 70%),
     var(--bg);
   color: var(--text);
   font: 16px/1.5 system-ui, sans-serif;
 }
 
+body {
+  margin: 0;
+  padding: 32px 24px 24px;
+}
+
 main {
-  width: min(720px, 100%);
-  text-align: center;
+  display: grid;
+  gap: 16px;
+  width: min(760px, 100%);
+  margin: 0 auto;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* En-tete */
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
 }
 
 #logo {
-  filter: drop-shadow(0 8px 24px color-mix(in srgb, var(--accent) 45%, transparent));
+  filter: drop-shadow(0 6px 18px color-mix(in srgb, var(--accent) 45%, transparent));
+}
+
+header div {
+  flex: 1;
 }
 
 h1 {
-  margin: 16px 0 4px;
-  font-size: 2.2rem;
+  margin: 0;
+  font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -70,36 +95,267 @@ h1 {
   text-transform: uppercase;
 }
 
-.hint {
-  margin: 28px 0 36px;
-  color: var(--muted);
+#clock {
+  font-size: 2.6rem;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
 
-.promises {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-align: start;
-}
+/* Cartes */
 
-.promises li {
-  padding: 14px 16px;
+.card {
+  padding: 18px 20px;
   background: var(--card);
   border: 1px solid var(--card-border);
-  border-radius: 12px;
+  border-radius: var(--radius);
 }
 
-.promises b {
-  display: block;
-  margin-bottom: 2px;
-  color: var(--accent);
+h2 {
+  margin: 0 0 4px;
+  font-size: 0.8rem;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
-.promises span {
+/* Musique */
+
+#music-hint {
+  margin: 0 0 14px;
+}
+
+#services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.service {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 6px;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.service:hover {
+  border-color: var(--accent);
+}
+
+.service[aria-checked="true"] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.service .dot {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+}
+
+.service .dot svg {
+  width: 24px;
+  height: 24px;
+}
+
+.primary {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 22px;
+  color: var(--accent-text);
+  background: var(--accent);
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.primary:hover {
+  filter: brightness(1.08);
+}
+
+#moods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+#moods a {
+  padding: 4px 12px;
   color: var(--muted);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
   font-size: 0.9rem;
+  text-decoration: none;
+}
+
+#moods a:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+/* Raccourcis */
+
+#shortcuts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#shortcuts li {
+  position: relative;
+}
+
+#shortcuts a,
+#shortcuts .add {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 6px;
+  color: inherit;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font: inherit;
+  font-size: 0.8rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#shortcuts a:hover,
+#shortcuts .add:hover {
+  border-color: var(--card-border);
+}
+
+#shortcuts .tile {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--tile-color, var(--card-border));
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+#shortcuts .tile.has-logo {
+  background: color-mix(in srgb, var(--card-border) 55%, transparent);
+}
+
+#shortcuts .tile svg {
+  width: 26px;
+  height: 26px;
+}
+
+#shortcuts .add .tile {
+  color: var(--muted);
+  background: transparent;
+  border: 1px dashed var(--card-border);
+}
+
+#shortcuts .name {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#shortcuts .remove {
+  position: absolute;
+  top: 2px;
+  inset-inline-end: 2px;
+  display: none;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  color: var(--muted);
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#shortcuts li:hover .remove,
+#shortcuts .remove:focus-visible {
+  display: block;
+}
+
+#shortcut-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+#shortcut-form input {
+  flex: 1;
+  padding: 8px 12px;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  font: inherit;
+}
+
+#shortcut-form button {
+  padding: 8px 16px;
+  color: var(--accent-text);
+  background: var(--accent);
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Pied de page */
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 0 4px;
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+#stats b {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  header {
+    flex-wrap: wrap;
+  }
+
+  #clock {
+    font-size: 2rem;
+  }
 }

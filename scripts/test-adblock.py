@@ -15,7 +15,7 @@ import time
 from marionette_driver.errors import UnsupportedOperationException
 from marionette_driver.marionette import Marionette
 
-FF = os.path.expanduser("~/ff/esr153/obj-validate/dist/bin/mimir")
+FF = os.environ.get("MIMIR_EXE") or os.path.expanduser("~/ff/esr153/obj-validate/dist/bin/mimir")
 PROFILE = os.path.expanduser("~/ff/profile-adblock-test")
 UBO_ID = "uBlock0@raymondhill.net"
 PORT = 2828

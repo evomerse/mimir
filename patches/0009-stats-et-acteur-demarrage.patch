@@ -1,0 +1,69 @@
+diff --git a/browser/actors/moz.build b/browser/actors/moz.build
+--- a/browser/actors/moz.build
++++ b/browser/actors/moz.build
+@@ -121,6 +121,8 @@
+     "LightweightThemeChild.sys.mjs",
+     "LinkHandlerChild.sys.mjs",
+     "LinkHandlerParent.sys.mjs",
++    "MimirStartChild.sys.mjs",
++    "MimirStartParent.sys.mjs",
+     "PageInfoChild.sys.mjs",
+     "PageInfoPreviewChild.sys.mjs",
+     "PageStyleChild.sys.mjs",
+diff --git a/browser/modules/moz.build b/browser/modules/moz.build
+--- a/browser/modules/moz.build
++++ b/browser/modules/moz.build
+@@ -128,6 +128,7 @@
+     "HomePage.sys.mjs",
+     "LaterRun.sys.mjs",
+     "LinksCache.sys.mjs",
++    "MimirStats.sys.mjs",
+     "PageActions.sys.mjs",
+     "PartnerLinkAttribution.sys.mjs",
+     "PermissionPromptTargeting.sys.mjs",
+diff --git a/browser/components/DesktopActorRegistry.sys.mjs b/browser/components/DesktopActorRegistry.sys.mjs
+--- a/browser/components/DesktopActorRegistry.sys.mjs
++++ b/browser/components/DesktopActorRegistry.sys.mjs
+@@ -142,6 +142,21 @@
+       "browser.newtabpage.activity-stream.asrouter.devtoolsEnabled",
+   },
+ 
++  // Mimir : page de demarrage locale (statistiques, musique, raccourcis).
++  MimirStart: {
++    parent: {
++      esModuleURI: "resource:///actors/MimirStartParent.sys.mjs",
++    },
++    child: {
++      esModuleURI: "resource:///actors/MimirStartChild.sys.mjs",
++      events: {
++        MimirStartQuery: { wantUntrusted: true },
++      },
++    },
++    matches: ["about:home", "about:newtab"],
++    remoteTypes: ["privilegedabout"],
++  },
++
+   AboutPrivateBrowsing: {
+     parent: {
+       esModuleURI: "resource:///actors/AboutPrivateBrowsingParent.sys.mjs",
+diff --git a/browser/components/BrowserGlue.sys.mjs b/browser/components/BrowserGlue.sys.mjs
+--- a/browser/components/BrowserGlue.sys.mjs
++++ b/browser/components/BrowserGlue.sys.mjs
+@@ -42,6 +42,7 @@
+   LoginBreaches: "resource:///modules/LoginBreaches.sys.mjs",
+   LoginHelper: "resource://gre/modules/LoginHelper.sys.mjs",
+   MigrationUtils: "resource:///modules/MigrationUtils.sys.mjs",
++  MimirStats: "resource:///modules/MimirStats.sys.mjs",
+   NimbusFeatures: "resource://nimbus/ExperimentAPI.sys.mjs",
+   OnboardingMessageProvider:
+     "resource:///modules/asrouter/OnboardingMessageProvider.sys.mjs",
+@@ -783,6 +784,9 @@
+ 
+     this._maybeOfferProfileReset();
+ 
++    // Mimir : compteur local de requetes bloquees.
++    lazy.MimirStats.init();
++
+     this._checkForOldBuildUpdates();
+ 
+     // Check if Sync is configured

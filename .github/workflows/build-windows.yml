@@ -1,0 +1,72 @@
+# Build Windows de Mimir : compile Firefox ESR + patchs, signe, produit l'installeur.
+#
+# Ce workflow n'a jamais tourne (pas de remote GitHub). La meme chaine (scripts/build-windows.sh) a ete
+# validee dans une VM Windows 11 locale : 2 h 20 sur 8 coeurs, 16 Go de RAM. Attention a la duree :
+# un build complet prend plusieurs heures sur 4 coeurs ; la limite d'un job GitHub est de 6 h.
+# Si elle est depassee : runner plus gros (« larger runner ») ou sccache.
+#
+# Secrets (optionnels, Settings > Secrets and variables > Actions) :
+#   WINDOWS_SIGN_PFX_BASE64  certificat de signature de code (.pfx) encode en base64
+#   WINDOWS_SIGN_PASSWORD    mot de passe du .pfx
+# Sans eux, l'installeur est produit mais non signe.
+name: Build Windows
+
+# Lancement MANUEL uniquement (onglet Actions > Run workflow) : un build Windows dure des heures
+# et consomme les minutes mensuelles du compte. Aucun declenchement automatique (ni tag, ni push).
+on:
+  workflow_dispatch:
+    inputs:
+      confirmer:
+        description: "Taper OUI : ce build consomme plusieurs heures de minutes Actions"
+        required: true
+
+env:
+  FIREFOX_TAG: FIREFOX_153_5_0esr_BUILD1
+
+jobs:
+  windows:
+    if: github.event.inputs.confirmer == 'OUI'
+    runs-on: windows-2022
+    timeout-minutes: 360
+    env:
+      HAS_CERT: ${{ secrets.WINDOWS_SIGN_PFX_BASE64 != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer MozillaBuild
+        shell: pwsh
+        run: |
+          Invoke-WebRequest "https://ftp.mozilla.org/pub/mozilla/libraries/win32/MozillaBuildSetup-Latest.exe" -OutFile mozillabuild.exe
+          Start-Process .\mozillabuild.exe -ArgumentList "/S" -Wait
+          Test-Path C:\mozilla-build\start-shell.bat
+
+      - name: Cloner Firefox ESR
+        shell: pwsh
+        run: git clone --depth 1 --branch $env:FIREFOX_TAG https://github.com/mozilla-firefox/firefox.git C:\ff\esr153
+
+      - name: Certificat de signature
+        if: env.HAS_CERT == 'true'
+        shell: pwsh
+        env:
+          PFX: ${{ secrets.WINDOWS_SIGN_PFX_BASE64 }}
+        run: |
+          [IO.File]::WriteAllBytes("$env:RUNNER_TEMP\mimir-sign.pfx", [Convert]::FromBase64String($env:PFX))
+          "MIMIR_SIGN_PFX=$env:RUNNER_TEMP\mimir-sign.pfx" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
+          "MIMIR_SIGN_PASSWORD=${{ secrets.WINDOWS_SIGN_PASSWORD }}" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
+
+      - name: Preparer les outils de compilation
+        shell: pwsh
+        run: |
+          C:\mozilla-build\start-shell.bat -no-start -defterm -c "cd /c/ff/esr153 && ./mach --no-interactive bootstrap --application-choice browser"
+
+      - name: Compiler, signer, empaqueter
+        shell: pwsh
+        run: |
+          $repo = $env:GITHUB_WORKSPACE -replace '\', '/' -replace '^([A-Za-z]):', '/$1'
+          C:\mozilla-build\start-shell.bat -no-start -defterm -c "cd '$repo' && scripts/build-windows.sh /c/ff/esr153"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mimir-windows
+          path: C:\ff\esr153\obj-mimir\dist\*.installer.exe
+          if-no-files-found: error

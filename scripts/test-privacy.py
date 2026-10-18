@@ -16,7 +16,7 @@ import time
 
 from marionette_driver.marionette import Marionette
 
-FF = os.path.expanduser("~/ff/esr153/obj-validate/dist/bin/mimir")
+FF = os.environ.get("MIMIR_EXE") or os.path.expanduser("~/ff/esr153/obj-validate/dist/bin/mimir")
 PROFILE = os.path.expanduser("~/ff/profile-privacy-test")
 LOG = os.path.expanduser("~/ff/privacy-http.log")
 PORT = 2828
@@ -95,6 +95,18 @@ def main():
             ok = got == want
             bad += not ok
             print(f"  {'ok ' if ok else 'ERR'} {k} = {got}")
+
+        print("[moteur de recherche par defaut]")
+        client.timeout.script = 60
+        engine = client.execute_async_script(
+            "const done = arguments[arguments.length - 1];"
+            "const {SearchService: s} = ChromeUtils.importESModule("
+            "'moz-src:///toolkit/components/search/SearchService.sys.mjs');"
+            "s.init().then(() => done(s.defaultEngine.name));"
+        )
+        ok = engine == "DuckDuckGo"
+        bad += not ok
+        print(f"  {'ok ' if ok else 'ERR'} moteur par defaut = {engine}")
 
         print(f"[attente {IDLE} s sans navigation]")
         time.sleep(IDLE)

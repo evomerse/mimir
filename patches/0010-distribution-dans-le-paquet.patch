@@ -1,0 +1,15 @@
+diff --git a/browser/installer/package-manifest.in b/browser/installer/package-manifest.in
+index 5936f8a8d9..0093e964c4 100644
+--- a/browser/installer/package-manifest.in
++++ b/browser/installer/package-manifest.in
+@@ -465,3 +465,10 @@ bin/libfreebl_64int_3.so
+ #if defined(BUILT_BY_MOZILLA)
+ @RESPATH@/distribution/*
+ #endif
++; Mimir : configuration de distribution (politiques, autoconfig) et pack de langue francais,
++; voir distribution/ et scripts/post-build.sh. Sans ces lignes, l'archive et l'installeur Windows
++; partent sans politiques (donc sans moteur par defaut DuckDuckGo).
++@RESPATH@/distribution/policies.json
++@RESPATH@/distribution/extensions/locale-fr/langpack-fr@firefox.mozilla.org.xpi
++@RESPATH@/mimir.cfg
++@RESPATH@/defaults/pref/autoconfig.js

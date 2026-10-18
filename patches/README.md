@@ -12,9 +12,10 @@ Deux mécanismes pour modifier Firefox sans en garder une copie complète. Les d
 | `0003-ublock-origin-integre.patch` | enregistre `browser/extensions/ublock-origin` : uBlock Origin devient un add-on intégré du navigateur (sources dans `overlay/`, contenu du xpi décompressé par `scripts/prepare-ublock.sh`) |
 | `0004-theme-premier-lancement.patch` | au premier lancement d'un profil, Mimir Nuit est le thème actif (la préférence par défaut ne suffit pas : le thème par défaut de Firefox est activé en premier) |
 | `0005-sans-sante-ni-etudes.patch` | `browser/moz.configure` : ne compile plus le rapport de santé (`MOZ_SERVICES_HEALTHREPORT`) ni Normandy/études (`MOZ_NORMANDY`) ; ces flags ne se désactivent que là (`project_flag` n'accepte que l'origine « implied ») |
+| `0006-prefs-vie-privee.patch` | bloc final de `browser/app/profile/firefox.js` : télémétrie, contenu sponsorisé, compte Firefox, sondes réseau (portail captif, région, géolocalisation) désactivés par défaut |
 | `0007-page-de-demarrage.patch` | enregistre la page de démarrage locale (`overlay/browser/base/content/mimir-start.{html,css,js}`) dans `browser/base/jar.mn` |
 | `0008-about-home-local.patch` | `about:home` et `about:newtab` chargent cette page au lieu d'Activity Stream (aucune requête réseau, aucun état) |
-| `0006-prefs-vie-privee.patch` | bloc final de `browser/app/profile/firefox.js` : télémétrie, contenu sponsorisé, compte Firefox, sondes réseau (portail captif, région, géolocalisation) désactivés par défaut |
+| `0009-stats-et-acteur-demarrage.patch` | enregistre le module `MimirStats` (compteur de blocages, démarré par `BrowserGlue`) et l'acteur `MimirStart` (dialogue page de démarrage / navigateur) ; sources dans `overlay/browser/modules/` et `overlay/browser/actors/` |
 
 ## Ajouter un patch
 
